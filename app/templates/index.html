@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  <div class="container pt-4">
+    <div class="row  p-0 mt-4">
+      <div class="col-lg-4 mx-auto shadow p-0">
+        <div class="alert alert-info">
+          <h2>Yangi PLAN qo'shish</h2>
+        </div>
+        <div class="p-4">
+          <form action="/add-todo/" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <hr>
+            <input type="submit" value="QO'SHISH" class="btn btn-info">
+          </form>
+        </div>
+      </div>
+
+
+
+      <div class="col">
+        <div class="border">
+
+          {% if todos|length == 0 %}
+
+          <div class="p-4">
+            <br>
+            <br>
+            <div class="alert alert-info text-center">
+              <p class="" style="font-size: 30px;">Hozircha hech qanday plan mavjud emas</p>
+            </div>
+            <br>
+            <br>
+          </div>
+
+          {%else%}
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>NOMI</th>
+                  <th>QAY HOLATDA</th>
+                  <th>O'CHIRISH</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                {% for todo in todos %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{todo.title}}</td>
+                  <td>
+                    {% if todo.jarayon == 'DOING'%}
+                    ✅
+                    {%else%}
+                    🕒
+                    {%endif%}
+                  </td>
+                  <td>
+                    <a href="/delete-todo/{{todo.id}}" title="Delete" class="">🗑️</a>
+                    {% if todo.jarayon == 'DOING'%}
+                    <a href="/change-status/{{todo.id}}/DONE" title="Mark Completed" class="">✅</a>
+                    {%else%}
+                    <a href="/change-status/{{todo.id}}/DOING" title="Mark Pending" class="">🕒</a>
+                    {%endif%}
+                  </td>
+                </tr>
+                {%endfor%}
+
+
+              </tbody>
+            </table>
+          </div>
+          {%endif%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
