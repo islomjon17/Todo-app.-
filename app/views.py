@@ -9,7 +9,9 @@ from app.models import TODO
 from django.contrib.auth.decorators import login_required
 
 
-@login_required(login_url='login')
+@login_required(login_url='login')## Django's login_required function is 
+#   used to secure views in your web applications 
+#   by forcing the client to authenticate with a valid logged-in User.
 ###### home page view
 def home(request):
 
@@ -75,7 +77,9 @@ def signup(request):
 
 
 ## add information for todo
-@login_required(login_url='login')
+@login_required(login_url='login')## Django's login_required function is 
+#   used to secure views in your web applications 
+#   by forcing the client to authenticate with a valid logged-in User
 def add_todo(request):
     """
     This function add the user data to todo list.

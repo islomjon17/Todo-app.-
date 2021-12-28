@@ -1,3 +1,5 @@
+
+<!-- base html  -->
 {% extends 'base.html' %}
 {% block content %}
 <div>
@@ -9,8 +11,13 @@
         </div>
         <div class="p-4">
           <form action="/add-todo/" method="POST">
+            <!-- A CSRF token is a secure random token (e.g., synchronizer token or challenge token) 
+            that is used to prevent CSRF attacks. The token needs to be unique per user session 
+            and should be of large random value to make it difficult to guess. A CSRF secure 
+            application assigns a unique CSRF token for every user session. -->
             {% csrf_token %}
-            {{form.as_p}}
+            <!--  user forms -->
+            {{form.as_p}} 
             <hr>
             <input type="submit" value="QO'SHISH" class="btn btn-info">
           </form>

@@ -1,7 +1,8 @@
 from django.db import models
+#import user model from django.contrib.auth.models
 from django.contrib.auth.models import User
 
-
+### To do models
 class TODO(models.Model):
     status_choices = [
     ('DONE', 'TUGATILDI'),
